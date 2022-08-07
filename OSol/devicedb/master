@@ -1,0 +1,192 @@
+version 1.0
+#
+# Copyright (c) 1994, 2015, Oracle and/or its affiliates. All rights reserved.
+#
+# Device tree database
+#      - Records in this file can be in an arbitrary order.
+#      - Records are terminated by newlines, and fields are separated
+#        by any number of spaces and/or tabs.
+#      - Quotes can be used in any field to allow white space.
+#      - Other than comments (lines such as this beginning with '#")
+#        and the "Version" string no other tokens are understood.
+#
+# Database format:-
+#
+# <dev ids> <name> <dev type> <bus> <realmode dvr> <dev desc> <properties>
+#
+# Where:-
+#       dev ids         List of unique device identifiers, separated by the
+#			"or" character '|' when more than one ID should
+#			match the same entry.
+#
+#       name            The device name. When the device ID matches
+#			an entry in the device database, the "name"
+#			property is set to this value, and the "compatible"
+#			property is set to the device ID. If no device
+#			database entry matched, then the node will just have
+#			the device ID for the "name" property. This allows
+#			us to specify the Solaris driver name for a device
+#			when we know what it is. PCI devices are typically
+#			listed in /etc/driver_aliases so we just map the
+#			name back to the device ID and let driver_aliases
+#			take care of the driver name mapping.
+#
+#       dev type        The device type.  Valid values are:
+#
+#			    com  ...  Serial ports
+# 			    mem  ...  Memory extender cards
+#			    mfc  ...  Multi-function card
+#			    msd  ...  Mass storage device (eg scsi or ide)
+#			    net  ...  Network devices
+#			    plat ...  Platform bef
+#			    oth  ...  Miscellaneous (including sound cards)
+#			    ptr  ...  Mice, etc.
+#			    vid  ...  Video/graphics cards
+#			    prt  ...  Parallel ports
+#
+#       bus             The bus type (eg all, isa, pnpisa, eisa, pci)
+#
+#       realmode dvr    The realmode driver for bootable devices,
+#                       otherwise "none".
+#                       Note, realmode driver is no longer being used.
+#                       The entry is there for backward compatibility.
+#
+#       dev desc        Freeform descriptive device text
+#
+#       properties      Optional additional device properties of the form
+#                       name=value eg ipl=3. Properties are added to the
+#                       device tree node passed to the kernel. This field
+#			is also used to make this database "extensible".
+#			Properties which begin with a dollar sign are
+#			are used to pass information to the Configuration
+#			Assistant, but are not added to the device tree.
+#			For example, the $forceload property tells the
+#			Configuration Assistant that it must always load
+#			the specified bef in order for that bef to set
+#			additional properties on the node.
+#
+#
+# ISA/EISA devices
+# id is the config file name (without leading "!" and trailing ".cfg")
+#
+SVI0101 SVI0101 oth all none "Sun Fire B100x BSC"
+PNP0300 keyboard key all none "IBM PC/XT keyboard controller (83-key)"
+PNP0302 keyboard key all none "IBM PC/XT keyboard controller (84-key)"
+PNP0301 keyboard key all none "IBM PC/AT keyboard controller (86-key)"
+PNP0303 keyboard key all none "IBM Enhanced (101/102-key, PS/2 mouse support)"
+PNP0304 keyboard key all none "Olivetti Keyboard (83-key)"
+PNP0305 keyboard key all none "Olivetti Keyboard (102-key)"
+PNP0306 keyboard key all none "Olivetti Keyboard (86-key)"
+PNP0307 keyboard key all none "Microsoft Windows(R) Keyboard"
+PNP0308 keyboard key all none "General Input Device Emulation Interface (GIDEI) legacy"
+PNP0309 keyboard key all none "Olivetti Keyboard (A101/102 key)"
+PNP030A keyboard key all none "AT&T 302 keyboard"
+PNP030B keyboard key all none "Reserved by Microsoft"
+PNP0320 keyboard key all none "Japanese 101-key keyboard"
+PNP0321 keyboard key all none "Japanese AX keyboard"
+PNP0322 keyboard key all none "Japanese 106-key keyboard A01"
+PNP0323 keyboard key all none "Japanese 106-key keyboard 002/003"
+PNP0324 keyboard key all none "Japanese 106-key keyboard 001"
+PNP0325 keyboard key all none "Japanese Toshiba Desktop keyboard"
+PNP0326 keyboard key all none "Japanese Toshiba Laptop keyboard"
+PNP0327 keyboard key all none "Japanese Toshiba Notebook keyboard"
+PNP0340 keyboard key all none "Korean 84-key keyboard"
+PNP0341 keyboard key all none "Korean 86-key keyboard"
+PNP0342 keyboard key all none "Korean Enhanced keyboard"
+PNP0343 keyboard key all none "Korean Enhanced keyboard 101b"
+PNP0343 keyboard key all none "Korean Enhanced keyboard 101c"
+PNP0344 keyboard key all none "Korean Enhanced keyboard 103"
+PNP0400 lp prt all none "Standard LPT printer port"
+PNP0401 lp prt all none "ECP printer port"
+PNP0500 asy com all none "Standard PC COM port"
+PNP0501 asy com all none "16550A-compatible COM port"
+# IRDA device is untested
+# PNP0510 asy com all none "Generic IRDA-compatible device"
+PNP0700 fdc oth all none "PC standard floppy disk controller"
+PNP0701 fdc oth all none "Standard floppy controller supporting MS Device Bay Spec"
+PNP0C31|ATM1200|IFX0102|BCM0101|NSC1200 tpm oth all none "Generic Trusted Platform Module"
+PNP0F00 msm ptr all none "Microsoft bus mouse"
+PNP0F01 mouse ptr all none "Microsoft Serial Mouse"
+PNP0F02 mouse ptr all none "Microsoft InPort Mouse"
+PNP0F03 mouse ptr all none "Microsoft PS/2-style Mouse"
+PNP0F04 mouse ptr all none "Mouse Systems Mouse"
+PNP0F05 mouse ptr all none "Mouse Systems 3-Button Mouse (COM2)"
+PNP0F06 mouse ptr all none "Genius Mouse (COM1)"
+PNP0F07 mouse ptr all none "Genius Mouse (COM2)"
+PNP0F08 mouse ptr all none "Logitech Serial Mouse"
+PNP0F09 mouse ptr all none "Microsoft BallPoint Serial Mouse"
+PNP0F0A mouse ptr all none "Microsoft Plug and Play Mouse"
+PNP0F0B mouse ptr all none "Microsoft Plug and Play BallPoint Mouse"
+PNP0F0C mouse ptr all none "Microsoft-compatible Serial Mouse"
+PNP0F0D mouse ptr all none "Microsoft-compatible InPort-compatible Mouse"
+PNP0F0E mouse ptr all none "Microsoft-compatible PS/2-style Mouse"
+PNP0F0F mouse ptr all none "Microsoft-compatible Serial BallPoint-compatible Mouse"
+PNP0F10 mouse ptr all none "Texas Instruments QuickPort Mouse"
+PNP0F11 mouse ptr all none "Microsoft-compatible Bus Mouse"
+PNP0F12 mouse ptr all none "Logitech PS/2-style Mouse"
+PNP0F13 mouse ptr all none "PS/2 Port for PS/2-style Mice"
+PNP0F14 mouse ptr all none "Microsoft Kids Mouse"
+PNP0F15 logi ptr all none "Logitech bus mouse"
+PNP0F16 mouse ptr all none "Logitech SWIFT device"
+PNP0F17 mouse ptr all none "Logitech-compatible serial mouse"
+PNP0F18 mouse ptr all none "Logitech-compatible bus mouse"
+PNP0F19 mouse ptr all none "Logitech-compatible PS/2-style Mouse"
+PNP0F1A mouse ptr all none "Logitech-compatible SWIFT Device"
+PNP0F1B mouse ptr all none "HP Omnibook Mouse"
+PNP0F1C mouse ptr all none "Compaq LTE Trackball PS/2-style Mouse"
+PNP0F1D mouse ptr all none "Compaq LTE Trackball Serial Mouse"
+PNP0F1E mouse ptr all none "Microsoft Kids Trackball Mouse"
+PNP0F1F mouse ptr all none "Reserved by Microsoft Input Device Group"
+PNP0F20 mouse ptr all none "Reserved by Microsoft Input Device Group"
+PNP0F21 mouse ptr all none "Reserved by Microsoft Input Device Group"
+PNP0F22 mouse ptr all none "Reserved by Microsoft Input Device Group"
+PNP0F23 mouse ptr all none "Reserved by Microsoft Input Device Group"
+PNP0FFF mouse ptr all none "Reserved by Microsoft Systems"
+SYN010B mouse ptr all none "Synaptics mouse pad"
+ICU1900|PNP0E00|PNP0E01|PNP0E02 pcic oth all pcic.bef "PCMCIA controller"
+ADS7180 sbpro oth all sbpro.bef "ADS Sound Blaster"
+AZT1008 sbpro oth all sbpro.bef "Aztech AZT1008 Sound Device"
+CSC0000 sbpro oth all sbpro.bef "Sound Blaster"
+PNPB002 sbpro oth all sbpro.bef "Sound Blaster"
+PNPB003 sbpro oth all sbpro.bef "Sound Blaster"
+CTL0001 sbpro oth all sbpro.bef "Sound Blaster"
+CTL0031 sbpro oth all sbpro.bef "Sound Blaster"
+CTL0041 sbpro oth all sbpro.bef "Sound Blaster"
+CTL0043 sbpro oth all sbpro.bef "Creative Labs Sound Blaster 16 Vibra"
+CTL0044 sbpro oth all sbpro.bef "Creative Labs Sound Blaster AWE64 Gold"
+CTL0045 sbpro oth all sbpro.bef "Sound Blaster"
+ESS1681 sbpro oth all sbpro.bef "Sound Blaster"
+ESS1868 sbpro oth all sbpro.bef "ESS ES1868 AudioDrive"
+ESS6881 sbpro oth all sbpro.bef "Sound Blaster"
+CSC0001|PNPB02F|CTL7001|CTL7002 joyst oth all joyst.bef "Game port (Joy stick)"
+PNPB006 none oth all none "Audio MIDI interface (MPU401 UART)"
+ALRB200 none oth eisa none "ALR math coprocessor"
+AST8250 none mem eisa none "AST Premmia GX Extended Memory Configuration"
+CPQ4411|CPQ4410|SNIAAC1 ncrs msd eisa ncrs.bef "Compaq 32-Bit Fast-SCSI-2 Controller"
+CPQ4020 csa msd eisa none "Compaq SMART Array Controller"
+ICU01F0 mwss oth all mwss.bef "Windows Sound System Compatible"
+ICU0210 logi ptr all none "Logitech bus mouse" 
+ICU0211 msm ptr all none "Microsoft bus mouse"
+ICU0580 tmc msd all none "Future Domain TMC-850 SCSI controller"
+ICU05F0 usc msd all none "Ultrastor ULTRA14F SCSI Controller"
+SUN0005 display vid all none "Sub-VGA Display Adapter"
+SUN0006 display vid all none "XGA Display Adapter" compatible="pnpPNP,900"
+PNP0900|ISY0010 display vid all none "VGA Compatible Display Adapter" compatible="pnpPNP,900"
+PNP0931 display vid all none "Chips & Tech VGA Display Adapter" compatible="pnpPNP,900"
+ISY0020 asy com all com.bef "Serial port"
+SUN0030 asy com all boca.bef "Boca board serial port" $forceload=yes
+USR0006|USR0002|SUP1381|HSM0240 asy com pnpisa none "Serial port w/ built in modem"
+ISY0030 mouse ptr all ps2ms.bef "PS/2 mouse"
+ISY0040|PNP0600|PNP0680 ata msd all ata.bef "IDE controller"
+ISY0050 fdc oth all fdc.bef "Floppy disk controller"
+ISY0060 lp prt all lpt.bef "Parallel port"
+SUN0010 p9000 vid all none "P9000 VLB VGA graphics adapter"
+SUN0020 p9100 vid all none "P9100 VLB VGA graphics adapter"
+PNP0902 display vid all none "VGA w/ 8514/A compatible graphics adapter" compatible="pnpPNP,900"
+WYS7901 none oth eisa none "CPU board"
+WYS7D01 none mem eisa none "Memory board"
+SUN0001 none oth all none "ISA Plug and play configuration ports"
+PNP8231|ATK1500|ADV55AA|PNP828C|CSI2203 pcn net all pcn.bef "AMD PCnet-ISA 79C960/PCnet-32 79C965 Ethernet"
+PNP0300|PNP0301|PNP0302|PNP0303|PNP0304|PNP0305|PNP0306|PNP0307|PNP0308|PNP0309|PNP030A|PNP030B|PNP0320|PNP0321|PNP0322|PNP0323|PNP0324|PNP0325|PNP0326|PNP0327|PNP0340|PNP0341|PNP0342|PNP0343|PNP0344 keyboard key all key.bef "System keyboard"
+PNP0C01 motherboard oth all none "Motherboard"
+CTL0051|PNPFFFF none oth pnpisa none "Unspecified device"
