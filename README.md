@@ -5,7 +5,6 @@ Windows 11 distro graphics : Oracle_Solaris-11_4-Text-X86
 -----
 # Running EXADATA servers on Sparc Oracle_Solaris-11_4-Text-X86:
 
-[![Watch the video](https://github.com/NikolayTach/Ground-Log-/assets/42199859/cf50d389-1857-457f-ae25-6e40fa0f13c6)](https://youtube.com/clip/UgkxJgwG6fXWBVd_atL1wi2Q910Esm1vPjcB)
-
-
+[![Watch the video](https://github-production-user-asset-6210df.s3.amazonaws.com/42199859/257640979-cf50d389-1857-457f-ae25-6e40fa0f13c6.png)](https://youtube.com/clip/UgkxJgwG6fXWBVd_atL1wi2Q910Esm1vPjcB "Особенности и преимущества серверов на процессорах Oracle SPARC
+")
 
